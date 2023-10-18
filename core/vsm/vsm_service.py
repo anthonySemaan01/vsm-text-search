@@ -50,7 +50,6 @@ class VSMService(AbstractVSMService):
                 else:
                     vector2.append(0.0)
 
-        print(f"Vector 1: {vector1}; Vector 2: {vector2}")
         df = pd.DataFrame(list(zip(vector1, vector2)), index=list(dimensions), columns=['Vector1', 'Vector2'])
         print(f"Original DataFrame :{df}")
 

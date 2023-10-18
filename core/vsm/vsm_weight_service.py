@@ -37,6 +37,5 @@ class VSMWeightService(AbstractVSMWeightService):
         return math.log((len(other_documents_list) + 1) / occurrences, 10)
 
     def compute_tf_idf_weight(self, term, document_being_analyzed: str, other_documents_list: List[str]):
-        tf_weights = self.compute_tf_weight(clean_text(document_being_analyzed))
-
+        tf_weights = self.compute_tf_weight(clean_text(document_being_analyzed))[0]
         return tf_weights[term] * self.compute_idf_weight(term, other_documents_list)
