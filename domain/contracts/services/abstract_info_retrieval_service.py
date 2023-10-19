@@ -6,4 +6,5 @@ class AbstractInfoRetrievalService(ABC):
 
     @abstractmethod
     def search_between_txt_files(self, query: str, indexing: bool, weight_strategy,
-                                 similarity_strategy): raise NotImplementedError
+                                 similarity_strategy, nearest_neighbor: int,
+                                 range_selector: float): raise NotImplementedError

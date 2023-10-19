@@ -21,4 +21,9 @@ class ComparisonService(AbstractComparisonService):
             similarity_strategy=comparison_request.similarity_strategy.value)
 
     def search_between_txt_files(self, search_request: SearchRequest):
-        return "hello world"
+        return self.info_retrieval_service.search_between_txt_files(query=search_request.query,
+                                                                    range_selector=search_request.range_selector,
+                                                                    nearest_neighbor=search_request.nearest_neighbor,
+                                                                    weight_strategy=search_request.weight_strategy.value,
+                                                                    similarity_strategy=search_request.similarity_strategy.value,
+                                                                    indexing=search_request.indexing)

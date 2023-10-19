@@ -28,7 +28,7 @@ class Services(containers.DeclarativeContainer):
                                     vsm_similarity_service=vsm_similarity_service)
 
     info_retrieval_service = providers.Factory(AbstractInfoRetrievalService.register(InfoRetrievalService),
-                                               path_service=paths_service)
+                                               path_service=paths_service, vsm_service=vsm_service)
 
     # Application services
     comparison_service = providers.Factory(AbstractComparisonService.register(ComparisonService),

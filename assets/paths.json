@@ -1,3 +1,4 @@
 {
-  "data_input_txt_docs": "./data/txt_documents"
+  "data_input_txt_docs": "./data/txt_documents",
+  "txt_indexing_table": "./data/indexing_tables/txt_indexing_table.json"
 }
