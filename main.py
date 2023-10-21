@@ -1,21 +1,19 @@
+import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
-from fastapi.staticfiles import StaticFiles
 from starlette.responses import JSONResponse
-from api.controllers import health_controller, comparison_controller
-from domain.exceptions.application_error import ApplicationError
 
-
+from api.controllers import health_controller, comparison_controller, indexing_tables_controller
 from containers import Services
-import uvicorn
+from domain.exceptions.application_error import ApplicationError
 
 
 def create_app() -> FastAPI:
     app = FastAPI(version='1.0', title='VSM Text Base Similarity API: IDPA Project')
     services = Services()
 
-    services.wire(modules=[comparison_controller])
+    services.wire(modules=[comparison_controller, indexing_tables_controller])
 
     app.add_middleware(
         CORSMiddleware,
@@ -35,6 +33,12 @@ def create_app() -> FastAPI:
         comparison_controller.router,
         prefix="/compare",
         tags=["Comparison"]
+    )
+
+    app.include_router(
+        indexing_tables_controller.router,
+        prefix="/indexing_tables",
+        tags=["indexing_tables"]
     )
 
     app.services = services
@@ -58,4 +62,3 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=2000
     )
-
