@@ -58,9 +58,14 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
             for file_name in os.listdir(self.path_service.paths.data_input_txt_docs):
                 with open(os.path.join(self.path_service.paths.data_input_txt_docs, file_name), 'r') as file:
                     file_content = file.read()
-                similarity = self.vsm_service.compute_similarity(content_txt_one=query, content_txt_two=file_content,
-                                                                 weight_strategy=weight_strategy,
-                                                                 similarity_strategy=similarity_strategy)
+
+                print(f"file content: {file_content}")
+                try:
+                    similarity = self.vsm_service.compute_similarity(content_txt_one=query, content_txt_two=file_content,
+                                                                     weight_strategy=weight_strategy,
+                                                                     similarity_strategy=similarity_strategy)
+                except Exception as e:
+                    continue
                 if similarity != 0:
                     similarity_results[file_name] = similarity
 
