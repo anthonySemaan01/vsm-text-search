@@ -22,5 +22,4 @@ def compare(comparison_request: ComparisonRequest,
 def search_between_txt_files(search_request: SearchRequest,
                              comparison_service: AbstractComparisonService = Depends(
                                  Provide[Services.comparison_service])):
-    data = comparison_service.search_between_txt_files(search_request)
-    return data
+    return comparison_service.search_between_txt_files(search_request)

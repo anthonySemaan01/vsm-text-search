@@ -47,12 +47,13 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                     weight_strategy=weight_strategy,
                     similarity_strategy=similarity_strategy)
 
-            print(similarity_results)
             documents_selected = knn_range_selector(nearest_neighbor=nearest_neighbor, range_parameter=range_selector,
-                                                    similarity_results=similarity_results).keys()
-            print(documents_selected)
+                                                    similarity_results=similarity_results)
 
-            return documents_selected
+            # Sort the dictionary by values in descending order
+            sorted_dict = {k: v for k, v in sorted(documents_selected.items(), key=lambda item: item[1], reverse=True)}
+
+            return sorted_dict
 
         else:
             for file_name in os.listdir(self.path_service.paths.data_input_txt_docs):
@@ -70,9 +71,12 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                     similarity_results[file_name] = similarity
 
             documents_selected = knn_range_selector(nearest_neighbor=nearest_neighbor, range_parameter=range_selector,
-                                                    similarity_results=similarity_results).keys()
+                                                    similarity_results=similarity_results)
 
-            return documents_selected
+            # Sort the dictionary by values in descending order
+            sorted_dict = {k: v for k, v in sorted(documents_selected.items(), key=lambda item: item[1], reverse=True)}
+
+            return sorted_dict
 
     def compute_txt_indexing_table(self):
         compute_indexing_table(txt_indexing_table_path=self.path_service.paths.txt_indexing_table,
