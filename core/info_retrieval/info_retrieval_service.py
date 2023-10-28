@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 
 from fastapi import UploadFile
 
@@ -8,7 +9,7 @@ from domain.contracts.services.abstract_info_retrieval_service import AbstractIn
 from domain.contracts.services.abstract_vsm_service import AbstractVSMService
 from shared.helpers.binary_search import binary_search
 from shared.helpers.clean_text import clean_text
-from shared.helpers.fill_txt_indexing_table import compute_indexing_table
+from shared.helpers.fill_txt_indexing_table import compute_indexing_table, add_single_file_to_indexing_table
 from shared.helpers.knn_range_selector import knn_range_selector
 
 
@@ -62,7 +63,8 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
 
                 print(f"file content: {file_content}")
                 try:
-                    similarity = self.vsm_service.compute_similarity(content_txt_one=query, content_txt_two=file_content,
+                    similarity = self.vsm_service.compute_similarity(content_txt_one=query,
+                                                                     content_txt_two=file_content,
                                                                      weight_strategy=weight_strategy,
                                                                      similarity_strategy=similarity_strategy)
                 except Exception as e:
@@ -83,4 +85,15 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                                txt_documents_path=self.path_service.paths.data_input_txt_docs)
 
     def add_file_to_txt_collection(self, file: UploadFile, with_indexing: bool = True):
-        pass
+        if file.filename in os.listdir(self.path_service.paths.data_input_txt_docs):
+            print("file name matches a file name in our dataset")
+
+        else:
+            # Create a unique file path in the upload directory
+            file_path = os.path.join(self.path_service.paths.data_input_txt_docs, file.filename)
+            with open(file_path, "wb") as f:
+                shutil.copyfileobj(file.file, f)
+
+            if with_indexing:
+                add_single_file_to_indexing_table(path_to_file=file_path,
+                                                  txt_indexing_table_path=self.path_service.paths.txt_indexing_table)
