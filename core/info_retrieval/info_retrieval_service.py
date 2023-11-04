@@ -97,3 +97,8 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
             if with_indexing:
                 add_single_file_to_indexing_table(path_to_file=file_path,
                                                   txt_indexing_table_path=self.path_service.paths.txt_indexing_table)
+
+    def get_txt_file(self, txt_file_name):
+        txt_file_path = os.path.join(self.path_service.paths.data_input_txt_docs, txt_file_name)
+        if os.path.isfile(txt_file_path):
+            return txt_file_path

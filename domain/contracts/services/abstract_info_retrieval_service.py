@@ -16,3 +16,6 @@ class AbstractInfoRetrievalService(ABC):
 
     @abstractmethod
     def add_file_to_txt_collection(self, file: UploadFile, with_indexing: bool = True): raise NotImplementedError
+
+    @abstractmethod
+    def get_txt_file(self, txt_file_name): raise NotImplementedError

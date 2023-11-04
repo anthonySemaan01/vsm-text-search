@@ -1,5 +1,6 @@
 from dependency_injector.wiring import inject, Provide
 from fastapi import APIRouter, Depends, UploadFile
+from fastapi.responses import FileResponse
 
 from containers import Services
 from domain.contracts.services.abstract_info_retrieval_service import AbstractInfoRetrievalService
@@ -21,3 +22,11 @@ def add_txt_file(file: UploadFile,
                  info_retrieval_service: AbstractInfoRetrievalService = Depends(
                      Provide[Services.info_retrieval_service])):
     info_retrieval_service.add_file_to_txt_collection(file=file, with_indexing=True)
+
+
+@router.get("/get_txt_file")
+@inject
+def get_txt_file(txt_file_name: str, info_retrieval_service: AbstractInfoRetrievalService = Depends(
+    Provide[Services.info_retrieval_service])):
+    file_path = info_retrieval_service.get_txt_file(txt_file_name=txt_file_name)
+    return FileResponse(path=file_path)
