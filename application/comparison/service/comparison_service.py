@@ -13,8 +13,15 @@ class ComparisonService(AbstractComparisonService):
         self.vsm_service = vsm_service
         self.info_retrieval_service = info_retrieval_service
 
-    def compare(self, comparison_request: ComparisonRequest):
-        return self.vsm_service.compute_similarity(
+    def compare_content_only(self, comparison_request: ComparisonRequest):
+        return self.vsm_service.compute_similarity_content_only(
+            content_txt_one=comparison_request.content_to_compare.content_txt_one,
+            content_txt_two=comparison_request.content_to_compare.content_txt_two,
+            weight_strategy=comparison_request.weight_strategy.value,
+            similarity_strategy=comparison_request.similarity_strategy.value)
+
+    def compare_content_and_structure(self, comparison_request: ComparisonRequest):
+        return self.vsm_service.compute_similarity_content_and_structure(
             content_txt_one=comparison_request.content_to_compare.content_txt_one,
             content_txt_two=comparison_request.content_to_compare.content_txt_two,
             weight_strategy=comparison_request.weight_strategy.value,

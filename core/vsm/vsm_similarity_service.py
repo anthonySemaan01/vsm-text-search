@@ -18,17 +18,29 @@ class VSMSimilarityService(AbstractVSMSimilarityService):
         return float(num / denom)
 
     def compute_pcc_similarity(self, vector_one, vector_two):
-        sum1 = sum(vector_one)
-        sum2 = sum(vector_two)
-        mean1 = sum1 / len(vector_one)
-        mean2 = sum2 / len(vector_two)
-        num = denom1 = denom2 = denom = 0
-        for i in range(len(vector_one)):
-            num += (vector_one[i] - mean1) * (vector_two[i] - mean2)
-            denom1 += (vector_one[i] - mean1) ** 2
-            denom2 += (vector_two[i] - mean2) ** 2
-        denom = math.sqrt(denom1 * denom2)
-        return num / denom
+        # Check if the lists have the same length
+        if len(vector_one) != len(vector_two):
+            raise ValueError("Lists must have the same length")
+
+        n = len(vector_one)
+
+        # Calculate the mean of each list
+        mean1 = sum(vector_one) / n
+        mean2 = sum(vector_two) / n
+
+        # Calculate the covariance
+        covariance = sum((vector_one[i] - mean1) * (vector_two[i] - mean2) for i in range(n))
+
+        # Calculate the standard deviation of each list
+        std_dev1 = math.sqrt(sum((vector_one[i] - mean1) ** 2 for i in range(n)))
+        std_dev2 = math.sqrt(sum((vector_two[i] - mean2) ** 2 for i in range(n)))
+
+        # Calculate the Pearson Correlation Coefficient
+        if std_dev1 == 0 or std_dev2 == 0:
+            return 0  # To avoid division by zero in case of constant lists
+        else:
+            pcc = covariance / (std_dev1 * std_dev2)
+            return pcc
 
     def compute_euclidian_similarity(self, vector_one, vector_two):
         dist = 0
@@ -44,11 +56,15 @@ class VSMSimilarityService(AbstractVSMSimilarityService):
         return 1 / (1 + dist)
 
     def compute_jaccard_similarity(self, vector_one, vector_two):
-        num = vector_one.intersection(vector_two)
-        denom = vector_one.union(vector_two)
-        return len(num) / len(denom)
+        set_one = set(vector_one)
+        set_two = set(vector_two)
+        intersection = len(set_one.intersection(set_two))
+        union = len(set_one.union(set_two))
+        return intersection / union
 
-    def compute_dice_similarity(self, vector_one, vector_two):
-        num = 2 * (vector_one.intersection(vector_two))
-        denom = (abs(vector_one) + abs(vector_two))
-        return num / denom
+    def compute_dice_similarity(self, vector_one:list, vector_two:list):
+            set_one = set(vector_one)
+            set_two = set(vector_two)
+            num = 2 * len(set_one.intersection(set_two))
+            denom = len(set_one) + len(set_two)
+            return num / denom

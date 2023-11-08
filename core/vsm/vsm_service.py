@@ -17,7 +17,7 @@ class VSMService(AbstractVSMService):
         self.vsm_weight_service = vsm_weight_service
         self.vsm_similarity_service = vsm_similarity_service
 
-    def compute_similarity(self, content_txt_one, content_txt_two, weight_strategy, similarity_strategy):
+    def compute_similarity_content_only(self, content_txt_one, content_txt_two, weight_strategy, similarity_strategy):
         vector1 = []
         vector2 = []
         content_txt_one_cleaned = clean_text(content_txt_one)
@@ -67,3 +67,14 @@ class VSMService(AbstractVSMService):
             similarity = self.vsm_similarity_service.compute_dice_similarity(vector1, vector2)
 
         return similarity
+
+    def compute_similarity_content_and_structure(self, content_txt_one, content_txt_two, weight_strategy,
+                                                 similarity_strategy):
+        # TODO
+        # 1. transform text file into an xml document
+        # 2. preprocess the xml document
+        # 3. do term context for each
+        # 4. compute weights
+        # 5. compute similarity
+
+        return "Hello"
