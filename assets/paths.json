@@ -1,8 +1,8 @@
 {
-  "data_input_txt_docs": "./data/txt_documents",
-  "data_input_txt_docs_structured": "./data/txt_documents/structured",
-  "data_input_txt_docs_flat": "./data/txt_documents/flat",
-  "txt_indexing_table": "./data/indexing_tables/txt_indexing_table.json",
-  "uploaded_files": "./data/uploaded_files",
-  "xml_version_of_txt": "./data/xml_version_of_txt"
+  "data_input_txt_docs": ".\\data\\txt_documents",
+  "data_input_txt_docs_structured": ".\\data\\txt_documents\\structured",
+  "data_input_txt_docs_flat": ".\\data\\txt_documents\\flat",
+  "txt_indexing_table": ".\\data\\indexing_tables\\txt_indexing_table.json",
+  "uploaded_files": ".\\data\\uploaded_files",
+  "xml_version_of_txt": ".\\data\\xml_version_of_txt"
 }
