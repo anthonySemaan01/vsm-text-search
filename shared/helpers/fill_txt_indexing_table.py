@@ -42,6 +42,10 @@ def compute_indexing_table(txt_documents_path: list, txt_indexing_table_path: st
                 indexing_table = process_txt(file_path, content, indexing_table)
 
     save_txt_indexing_table(indexing_table=indexing_table, txt_indexing_table_path=txt_indexing_table_path)
+    return {
+        "status": "Success",
+        "data": f"Checked {len(txt_documents_path)} files"
+    }
 
 
 def add_single_file_to_indexing_table(path_to_file: str, txt_indexing_table_path: str):

@@ -1,5 +1,7 @@
 import os
+import time
 import xml.etree.ElementTree as et
+import random
 
 import pandas as pd
 
@@ -22,6 +24,7 @@ class VSMService(AbstractVSMService):
         self.vsm_similarity_service = vsm_similarity_service
 
     def compute_similarity_content_only(self, content_txt_one, content_txt_two, weight_strategy, similarity_strategy):
+        start = time.time()
         vector1 = []
         vector2 = []
         content_txt_one_cleaned = clean_text(content_txt_one)
@@ -58,6 +61,7 @@ class VSMService(AbstractVSMService):
 
         df = pd.DataFrame(list(zip(vector1, vector2)), index=list(dimensions), columns=['Vector1', 'Vector2'])
         print(f"Original DataFrame :{df}")
+        df.to_csv(os.path.join(self.path_service.paths.csvs, f"content_only{random.randint(100, 999)}.csv"), index=True)
 
         if similarity_strategy == SimilarityStrategy.cosine.value:
             similarity = self.vsm_similarity_service.compute_cosine_similarity(vector1, vector2)
@@ -72,10 +76,17 @@ class VSMService(AbstractVSMService):
         else:
             similarity = self.vsm_similarity_service.compute_dice_similarity(vector1, vector2)
 
-        return similarity
+        end = time.time()
+
+        return {
+            "similarity": similarity,
+            "time": end - start,
+            "dataframe":  df.to_json(orient='columns')
+        }
 
     def compute_similarity_content_and_structure(self, content_txt_one, name_file_one, content_txt_two, name_file_two,
                                                  weight_strategy, similarity_strategy):
+        start = time.time()
         vector1 = []
         vector2 = []
 
@@ -138,6 +149,8 @@ class VSMService(AbstractVSMService):
         df = pd.DataFrame(list(zip(vector1, vector2)), index=list(dimensions),
                           columns=['Vector1', 'Vector2'])
         print(f"Original DataFrame :{df}")
+        # Write the DataFrame to a CSV file
+        df.to_csv(os.path.join(self.path_service.paths.csvs, f"{name_file_one}{name_file_two}.csv"), index=True)
 
         # 5. compute similarity
         if similarity_strategy == SimilarityStrategy.cosine.value:
@@ -153,4 +166,10 @@ class VSMService(AbstractVSMService):
         else:
             similarity = self.vsm_similarity_service.compute_dice_similarity(vector1, vector2)
 
-        return similarity
+        end = time.time()
+
+        return {
+            "similarity": similarity,
+            "time": end - start,
+            "dataframe":  df.to_json(orient='columns')
+        }

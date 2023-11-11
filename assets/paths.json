@@ -4,5 +4,6 @@
   "data_input_txt_docs_flat": ".\\data\\txt_documents\\flat",
   "txt_indexing_table": ".\\data\\indexing_tables\\txt_indexing_table.json",
   "uploaded_files": ".\\data\\uploaded_files",
-  "xml_version_of_txt": ".\\data\\xml_version_of_txt"
+  "xml_version_of_txt": ".\\data\\xml_version_of_txt",
+  "csvs": ".\\data\\csvs"
 }

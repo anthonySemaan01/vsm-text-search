@@ -8,4 +8,5 @@ class ApiPaths(BaseModel):
     xml_version_of_txt: str
     data_input_txt_docs_structured: str
     data_input_txt_docs_flat: str
+    csvs: str
 

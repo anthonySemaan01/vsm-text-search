@@ -1,6 +1,8 @@
+import time
 import json
 import os
 import shutil
+import time
 import xml.etree.ElementTree as et
 
 from fastapi import UploadFile
@@ -23,6 +25,7 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
 
     def search_between_txt_files_structured(self, query: str, name_query_file: str, indexing: bool, weight_strategy,
                                             similarity_strategy, nearest_neighbor: int, range_selector: float):
+        start = time.time()
         similarity_results = {}
         query_cleaned = clean_text(query)
 
@@ -77,8 +80,11 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
 
             # Sort the dictionary by values in descending order
             sorted_dict = {k: v for k, v in sorted(documents_selected.items(), key=lambda item: item[1], reverse=True)}
-
-            return sorted_dict
+            end = time.time()
+            return {
+                "similarity": sorted_dict,
+                "time": end - start,
+            }
 
         else:
             files_flat: list = [os.path.join(self.path_service.paths.data_input_txt_docs_flat, file_name) for file_name
@@ -124,11 +130,15 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
 
             # Sort the dictionary by values in descending order
             sorted_dict = {k: v for k, v in sorted(documents_selected.items(), key=lambda item: item[1], reverse=True)}
-
-            return sorted_dict
+            end = time.time()
+            return {
+                "similarity": sorted_dict,
+                "time": end - start,
+            }
 
     def search_between_txt_files_flat(self, query: str, indexing: bool, weight_strategy, similarity_strategy,
                                       nearest_neighbor: int, range_selector: float):
+        start = time.time()
         query_cleaned = clean_text(query)
         similarity_results = {}
         if indexing:
@@ -161,8 +171,11 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
 
             # Sort the dictionary by values in descending order
             sorted_dict = {k: v for k, v in sorted(documents_selected.items(), key=lambda item: item[1], reverse=True)}
-
-            return sorted_dict
+            end = time.time()
+            return {
+                "similarity": sorted_dict,
+                "time": end - start,
+            }
 
         else:
             files_flat = os.listdir(self.path_service.paths.data_input_txt_docs_flat)
@@ -203,8 +216,11 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
 
             # Sort the dictionary by values in descending order
             sorted_dict = {k: v for k, v in sorted(documents_selected.items(), key=lambda item: item[1], reverse=True)}
-
-            return sorted_dict
+            end = time.time()
+            return {
+                "similarity": sorted_dict,
+                "time": end - start,
+            }
 
     def compute_txt_indexing_table(self):
         files_flat: list = [os.path.join(self.path_service.paths.data_input_txt_docs_flat, file_name) for file_name in
