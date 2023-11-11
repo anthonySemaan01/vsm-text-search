@@ -4,8 +4,8 @@ from domain.models.enums.similarity_strategy import SimilarityStrategy
 
 
 class ContentToCompare(BaseModel):
-    content_txt_one: str
-    content_txt_two: str
+    name_file_one: str
+    name_file_two: str
 
 
 class ComparisonRequest(BaseModel):

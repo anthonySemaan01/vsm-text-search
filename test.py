@@ -1,11 +1,16 @@
 import re
-from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom import minidom
+from xml.etree.ElementTree import Element, SubElement, tostring
+
 
 def prettify_xml(elem):
     rough_string = tostring(elem, "utf-8")
     reparsed = minidom.parseString(rough_string)
     return reparsed.toprettyxml(indent="    ")
+
+
+def remove_digits(text):
+    return re.sub(r'\d', '', text)
 
 def text_to_xml(text):
     def create_content_xml(content):
@@ -19,11 +24,13 @@ def text_to_xml(text):
                 dimension_el.text = word
         return content_el
 
-    def add_sections_to_xml(lines):
+    def add_sections_to_xml(lines: list):
         xml_root = Element('xml')
         doc_el = SubElement(xml_root, 'Document')
         title_el = SubElement(doc_el, 'title')
-        title_el.text = lines[0]
+        for word in lines[0].split():
+            dimension_el = SubElement(title_el, 'dimension')
+            dimension_el.text = word
         sections_el = SubElement(doc_el, 'sections')
 
         # Regular expressions for matching section and subsection numbers
@@ -32,8 +39,12 @@ def text_to_xml(text):
 
         # Variables to keep track of current section and subsection
         current_section = None
-        current_subsections = None
+        parent_subsections = None
+        current_subsection = None
         last_accessed_element = None
+
+        content_paragraph_lines = 0
+        subsections_tag_appended = False
 
         for line in lines[1:]:
             section_match = section_re.match(line)
@@ -43,51 +54,55 @@ def text_to_xml(text):
             print(f"for line {line} - subsection-match: {subsection_match}")
             print("")
             print(f"for line: {line} - current-section: {current_section}")
-            print(f"for line {line} - current-subsection: {current_subsections}")
-            print ("")
+            print(f"for line {line} - current-subsection: {current_subsection}")
+            print("")
 
             if section_match and not subsection_match:  # Start a new section
+                subsections_tag_appended = False
                 current_section = SubElement(sections_el, 'section')
                 last_accessed_element = current_section
                 number_el = SubElement(current_section, 'number')
                 number_el.text = section_match.group(1) + '.'
                 title_el = SubElement(current_section, 'title')
-                title_el.text = section_match.group(2)
+                for word in section_match.group(2).split():
+                    dimension_el = SubElement(title_el, 'dimension')
+                    dimension_el.text = word
 
             elif subsection_match:  # Start a new subsection within the current section
                 # if current_subsections is None or not current_section:
-                if last_accessed_element is current_section:
-                    current_subsections = SubElement(current_section, 'subsections')
-                    last_accessed_element = current_subsections
+                if last_accessed_element is current_section and not subsections_tag_appended:
+                    parent_subsections = SubElement(current_section, 'subsections')
+                    subsections_tag_appended = True
 
-                else:
-                    subsection_el = SubElement(current_subsections, 'subsection')
-                    last_accessed_element = subsection_el
-                number_el = SubElement(subsection_el, 'number')
+                current_subsection = SubElement(parent_subsections, 'subsection')
+                last_accessed_element = current_subsection
+                number_el = SubElement(current_subsection, 'number')
                 number_el.text = subsection_match.group(1) + '.'
-                title_el = SubElement(subsection_el, 'title')
-                title_el.text = subsection_match.group(2)
+                title_el = SubElement(current_subsection, 'title')
+                for word in remove_digits(section_match.group(2)).split():
+                    dimension_el = SubElement(title_el, 'dimension')
+                    dimension_el.text = word
 
             else:  # Content for the current section or subsection
+                content_paragraph_lines += 1
                 content = create_content_xml([line])
-                print (f"before assessment: current_subsections: {current_subsections} --- current_section {current_section}")
-                if last_accessed_element is current_subsections:
-                    print(f"enter the loop")
-                    # If we have a subsection without content, add to the last subsection
-                    last_subsection = current_subsections.findall('subsection')[-1]
-                    last_subsection.append(content)
-                else:
-                    # Otherwise, add to the current section
-                    current_section.append(content)
+                print(
+                    f"before assessment: current_subsections: {current_subsection} --- current_section {current_section}")
 
-        return prettify_xml(xml_root)
+                if last_accessed_element is current_section:
+                    current_section.append(content)
+                elif last_accessed_element is current_subsection:
+                    current_subsection.append(content)
+
+        return xml_root, prettify_xml(xml_root)
 
     # Split the text into lines and filter out empty ones
     lines = [line for line in text.strip().split('\n') if line.strip()]
     print(f"lines: {lines}")
     # Convert to XML
-    xml_output = add_sections_to_xml(lines)
-    return xml_output
+    xml_root, xml_output = add_sections_to_xml(lines)
+    return xml_root, xml_output
+
 
 # Your text goes here
 text_document = """
@@ -103,10 +118,8 @@ IDPA course.
 """
 
 # Print the formatted XML
-xml_output = text_to_xml(text_document)
+xml_root, xml_output = text_to_xml(text_document)
 print(xml_output)
-
-
 
 # exptected result
 
@@ -151,4 +164,3 @@ print(xml_output)
 #     </sections>
 #     </Document>
 # </xml>
-

@@ -1,11 +1,106 @@
-from xml.etree.ElementTree import Element, SubElement
+from xml.dom import minidom
+from xml.etree.ElementTree import Element, SubElement, tostring
+
 import regex as re
+
 from shared.helpers.clean_text import clean_text
+
+
+def prettify_xml(elem):
+    rough_string = tostring(elem, "utf-8")
+    reparsed = minidom.parseString(rough_string)
+    return reparsed.toprettyxml(indent="    ")
+
+
+def remove_digits(text):
+    return re.sub(r'\d', '', text)
 
 
 # TODO implement transform_text_to_xml
 def transform_text_to_xml(semi_structured_text: str):
-    return ""
+    def create_content_xml(content, content_tag):
+
+        for line in content:
+            line = clean_text(line)
+            words = line.split()
+            print(words)
+            for word in words:
+                dimension_el = SubElement(content_tag, 'dimension')
+                dimension_el.text = word
+        return content_tag
+
+    def add_sections_to_xml(lines: list):
+        xml_root_element = Element('xml')
+        doc_el = SubElement(xml_root_element, 'Document')
+        title_el = SubElement(doc_el, 'title')
+        for word in lines[0].split():
+            dimension_el = SubElement(title_el, 'dimension')
+            dimension_el.text = word
+        sections_el = SubElement(doc_el, 'sections')
+
+        # Regular expressions for matching section and subsection numbers
+        section_re = re.compile(r'^(\d+)\.\s*(.*)')
+        subsection_re = re.compile(r'^(\d+\.\d+)\.\s*(.*)')
+
+        # Variables to keep track of current section and subsection
+        current_section = None
+        parent_subsections = None
+        current_subsection = None
+        last_accessed_element = None
+
+        content_paragraph_lines = 0
+        subsections_tag_appended = False
+
+        for line in lines[1:]:
+            section_match = section_re.match(line)
+            subsection_match = subsection_re.match(line)
+
+            if section_match and not subsection_match:  # Start a new section
+                content_paragraph_lines = 0
+                subsections_tag_appended = False
+                current_section = SubElement(sections_el, 'section')
+                last_accessed_element = current_section
+                number_el = SubElement(current_section, 'number')
+                number_el.text = section_match.group(1) + '.'
+                title_el = SubElement(current_section, 'title')
+                for word in clean_text(section_match.group(2)).split():
+                    dimension_el = SubElement(title_el, 'dimension')
+                    dimension_el.text = word
+
+            elif subsection_match:
+                content_paragraph_lines = 0
+                if last_accessed_element is current_section and not subsections_tag_appended:
+                    parent_subsections = SubElement(current_section, 'subsections')
+                    subsections_tag_appended = True
+
+                current_subsection = SubElement(parent_subsections, 'subsection')
+                last_accessed_element = current_subsection
+                number_el = SubElement(current_subsection, 'number')
+                number_el.text = subsection_match.group(1) + '.'
+                title_el = SubElement(current_subsection, 'title')
+                for word in clean_text(remove_digits(section_match.group(2))).split():
+                    dimension_el = SubElement(title_el, 'dimension')
+                    dimension_el.text = word
+
+            else:  # Content for the current section or subsection
+                content_paragraph_lines += 1
+
+                if content_paragraph_lines == 1:
+                    content = Element('content')
+
+                content_el = create_content_xml([line], content)
+
+                if last_accessed_element is current_section:
+                    current_section.append(content)
+                elif last_accessed_element is current_subsection:
+                    current_subsection.append(content)
+
+        return xml_root_element, prettify_xml(xml_root_element)
+
+    # Convert to XML
+    xml_root, xml_output = add_sections_to_xml(
+        [line for line in semi_structured_text.strip().split('\n') if line.strip()])
+    return xml_root, xml_output
 
 
 def preprocessing(elt, depth=0, path=""):
@@ -87,3 +182,9 @@ def find_term_context(tree):
             term_context_list.append(str(element_name(element)[1:] + "," + root_path(element, tree)))
 
     return term_context_list
+
+
+# Tag-based Approach
+def find_tag_based(tree):
+    # Returning all elements in the tree.
+    return [element_name(x)[1:] for x in tree.iter()]

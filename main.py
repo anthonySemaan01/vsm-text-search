@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from api.controllers import health_controller, comparison_controller, indexing_tables_controller
+from api.controllers import health_controller, comparison_controller, indexing_tables_controller, files_controller
 from containers import Services
 from domain.exceptions.application_error import ApplicationError
 
@@ -39,6 +39,12 @@ def create_app() -> FastAPI:
         indexing_tables_controller.router,
         prefix="/indexing_tables",
         tags=["indexing_tables"]
+    )
+
+    app.include_router(
+        files_controller.router,
+        prefix="/files",
+        tags=["files"]
     )
 
     app.services = services

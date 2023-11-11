@@ -32,14 +32,14 @@ def process_txt(file_name, content_of_txt_file, indexing_table):
     return sorted_index
 
 
-def compute_indexing_table(txt_documents_path: str, txt_indexing_table_path: str):
+def compute_indexing_table(txt_documents_path: list, txt_indexing_table_path: str):
     indexing_table: dict = {}
-    for file_name in os.listdir(txt_documents_path):
-        if file_name.endswith(".txt"):
-            with open(os.path.join(txt_documents_path, file_name), "r") as file:
+    for file_path in txt_documents_path:
+        if file_path.endswith(".txt"):
+            with open(file_path, "r") as file:
                 content = file.read()
 
-                indexing_table = process_txt(file_name, content, indexing_table)
+                indexing_table = process_txt(file_path, content, indexing_table)
 
     save_txt_indexing_table(indexing_table=indexing_table, txt_indexing_table_path=txt_indexing_table_path)
 

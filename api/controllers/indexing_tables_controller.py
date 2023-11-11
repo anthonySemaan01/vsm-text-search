@@ -1,6 +1,7 @@
 from dependency_injector.wiring import inject, Provide
 from fastapi import APIRouter, Depends, UploadFile
 from fastapi.responses import FileResponse
+from typing import List
 
 from containers import Services
 from domain.contracts.services.abstract_info_retrieval_service import AbstractInfoRetrievalService

@@ -1,7 +1,8 @@
 from abc import abstractmethod, ABC, ABCMeta
 
 from domain.models.comparison_request import ComparisonRequest
-from domain.models.search_request import SearchRequest
+from domain.models.search_request import SearchRequestStructure
+from domain.models.search_request import SearchRequestFlat
 
 
 class AbstractComparisonService(ABC):
@@ -14,4 +15,7 @@ class AbstractComparisonService(ABC):
     def compare_content_and_structure(self, comparison_request: ComparisonRequest): raise NotImplementedError
 
     @abstractmethod
-    def search_between_txt_files(self, search_request: SearchRequest): raise NotImplementedError
+    def search_between_txt_files_flat(self, search_request: SearchRequestFlat): raise NotImplementedError
+
+    @abstractmethod
+    def search_between_txt_files_structured(self, search_request: SearchRequestStructure): raise NotImplementedError
