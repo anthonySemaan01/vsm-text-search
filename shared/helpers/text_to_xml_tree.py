@@ -19,11 +19,9 @@ def remove_digits(text):
 # TODO implement transform_text_to_xml
 def transform_text_to_xml(semi_structured_text: str):
     def create_content_xml(content, content_tag):
-
         for line in content:
             line = clean_text(line)
             words = line.split()
-            print(words)
             for word in words:
                 dimension_el = SubElement(content_tag, 'dimension')
                 dimension_el.text = word
@@ -51,7 +49,7 @@ def transform_text_to_xml(semi_structured_text: str):
         content_paragraph_lines = 0
         subsections_tag_appended = False
 
-        for line in lines[1:]:
+        for index, line in enumerate(lines[1:], 1):
             section_match = section_re.match(line)
             subsection_match = subsection_re.match(line)
 
@@ -88,11 +86,19 @@ def transform_text_to_xml(semi_structured_text: str):
                 if content_paragraph_lines == 1:
                     content = Element('content')
 
-                content_el = create_content_xml([line], content)
+                content_element = create_content_xml([line], content)
 
-                if last_accessed_element is current_section:
+                done = False
+                print(line)
+                if index + 1 < len(lines):
+                    section_match_nl = section_re.match(lines[index + 1])
+                    subsection_match_nl = subsection_re.match(lines[index + 1])
+                else:
+                    done = True
+
+                if last_accessed_element is current_section and (section_match_nl or subsection_match_nl) or done:
                     current_section.append(content)
-                elif last_accessed_element is current_subsection:
+                elif last_accessed_element is current_subsection and (section_match_nl or subsection_match_nl) or done:
                     current_subsection.append(content)
 
         return xml_root_element, prettify_xml(xml_root_element)

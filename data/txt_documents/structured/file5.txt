@@ -1,0 +1,15 @@
+Text Document Locator Tool
+1. Welcome aboard
+Explore the fundamentals of our document locator tool. This section offers insights into the tool's features and functionality.
+Employ relevant keywords for precise search results.
+Organize your documents systematically for efficient categorization.
+
+2. Aims and Objectives
+The primary aim of this tool is to simplify the process of searching and managing text documents efficiently.
+
+2.1. Usage Guidelines and Tricks
+Discover these guidelines and tricks to enhance your experience with the document locator tool:
+Dance Monkey
+
+2.2. System Framework Overview
+Gain an understanding of the underlying framework supporting the document locator tool, ensuring stability and optimal performance.

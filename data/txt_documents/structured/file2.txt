@@ -1,0 +1,14 @@
+Text Document Search Tool
+1. Greetings
+Hello and welcome to the text document search utility. We're excited to have you on board!
+
+2. Aim and Objectives
+Our main objective is to provide users with a powerful tool for searching and managing text documents seamlessly.
+
+2.1. Operating Guidelines
+Follow these guidelines for optimal usage of the search tool:
+Use descriptive keywords for precise search results.
+Explore the advanced search options for refined queries.
+
+2.2. Structural Framework
+The underlying framework of the search tool is designed to handle diverse document types and ensure efficiency.

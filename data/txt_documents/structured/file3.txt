@@ -1,0 +1,14 @@
+Text Document Search Tool
+1. Salutations
+Greetings! This document elucidates the functionality of our innovative text document search tool.
+
+2. Mission and Goals
+Our mission is to simplify document management, and the tool's primary goal is to facilitate quick and accurate text searches.
+
+2.1. Guidelines for Use
+Adhere to these guidelines to optimize your experience with the search tool:
+Utilize Boolean operators for complex queries.
+Leverage the tool's tagging system for better organization.
+
+2.2. Framework Overview
+The search tool is supported by a robust framework, ensuring stability and responsiveness.

@@ -1,10 +1,14 @@
 Text Document Search Tool
-1. Hello
-Life is good Anthony Semaan tell me more about yourself and how you have been able to fight depression for the last couple of years. Mainting a healthy environment is crucial
-another line
-2. Objective
-The goal
-2.1. Guidelines
-Null
-2.2. Framework
-IDPA course.
+1. Introduction
+Welcome to our document search tool. This document provides an overview of the tool's features and usage.
+
+2. Objectives
+The primary goal of this tool is to streamline the process of searching and managing text documents efficiently.
+
+2.1. Usage Guidelines
+Please follow these guidelines to make the most out of the document search tool.
+Use relevant keywords for accurate search results.
+Organize your documents into folders for better categorization.
+
+2.2. System Framework
+The document search tool is built on a robust framework, ensuring reliability and performance.
