@@ -131,6 +131,9 @@
     "./data/txt_documents/flat/FatherPoems716FatherUniteUsPoembyMelvinaGermain.txt",
     "./data/txt_documents/flat/BeautyPoems3TheCurseOfBeautyDrinkersPoembyLuisGildelaPuente.txt"
   ],
+  "aboard": [
+    "./data/txt_documents/structured/file5.txt"
+  ],
   "abod": [
     "./data/txt_documents/flat/AmericaPoemsAmericaAProphecyPoembyWilliamBlake.txt",
     "./data/txt_documents/flat/AlonePoemsAllAlonePoembyMaryDarbyRobinson.txt"
@@ -215,7 +218,6 @@
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
     "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "accus": [
@@ -532,7 +534,9 @@
     "./data/txt_documents/flat/AlonePoemsAloneAlonePoembyhopeless111.txt",
     "./data/txt_documents/structured/file2.txt",
     "./data/txt_documents/structured/file4.txt",
-    "./data/txt_documents/structured/file6.txt"
+    "./data/txt_documents/structured/file6.txt",
+    "./data/txt_documents/structured/file5.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "aime": [
     "./data/txt_documents/flat/BeautyPoemsAmericanBeautyPoembyCarolynKizer.txt"
@@ -2780,7 +2784,6 @@
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
     "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "beucas": [
@@ -3814,8 +3817,7 @@
     "./data/txt_documents/flat/BeautyPoemsAHymnOfHeavenlyBeautyPoembyEdmundSpenser.txt",
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file6.txt"
   ],
   "bulletproof": [
     "./data/txt_documents/flat/FaithPoemsChampionshipFaithFightYouWillWinPoembyLukeEaster.txt"
@@ -6246,7 +6248,8 @@
     "./data/txt_documents/flat/CinderellaPoemsACinderellaDancePoembyEmmanuelaPetitFrere.txt",
     "./data/txt_documents/flat/CinderellaPoemsACinderellaDancePoembyEmmanuelaPetitFrere.txt",
     "./data/txt_documents/flat/CinderellaPoemsACinderellaDancePoembyEmmanuelaPetitFrere.txt",
-    "./data/txt_documents/flat/CinderellaPoemsACinderellaDancePoembyEmmanuelaPetitFrere.txt"
+    "./data/txt_documents/flat/CinderellaPoemsACinderellaDancePoembyEmmanuelaPetitFrere.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "danger": [
     "./data/txt_documents/flat/ChildhoodPoems152TheCoalTrainChildhoodMemoryPoembyMelvinaGermain.txt",
@@ -7221,7 +7224,8 @@
     "./data/txt_documents/flat/BeautyPoemsAnHymnInHonourOfBeautyPoembyEdmundSpenser.txt",
     "./data/txt_documents/flat/BeautyPoemsAHymnInHonourOfBeautyPoembyEdmundSpenser.txt",
     "./data/txt_documents/structured/file4.txt",
-    "./data/txt_documents/structured/file6.txt"
+    "./data/txt_documents/structured/file6.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "discover": [
     "./data/txt_documents/flat/FaithPoems0190ANovelFairyStoryForAPoeticMultiFaithGiftmasPoembyMichaelShepherd.txt"
@@ -7427,7 +7431,6 @@
     "./data/txt_documents/structured/file6.txt",
     "./data/txt_documents/structured/file6.txt",
     "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file5.txt",
@@ -8196,6 +8199,7 @@
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
     "./data/txt_documents/structured/file6.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file5.txt"
   ],
   "effort": [
@@ -8345,6 +8349,9 @@
     "./data/txt_documents/flat/BeautyPoemsAHymnOfHeavenlyBeautyPoembyEdmundSpenser.txt",
     "./data/txt_documents/flat/AmericaPoemsAmericaIn1804PoembyEdgarLeeMasters.txt"
   ],
+  "employ": [
+    "./data/txt_documents/structured/file5.txt"
+  ],
   "employe": [
     "./data/txt_documents/flat/AngerPoems098150WaysToOvercomeAngerPoembyGanChennai.txt"
   ],
@@ -8490,7 +8497,8 @@
   "enhanc": [
     "./data/txt_documents/flat/BirthPoems02VivekanandaBirthOfNarendranathDattaPoembyRajaramRamachandran.txt",
     "./data/txt_documents/flat/BrotherPoemsAnotherBrotherPoembyMAXINEPSOSO.txt",
-    "./data/txt_documents/flat/BirthPoemsABirthDayWishPoembysuryasurya.txt"
+    "./data/txt_documents/flat/BirthPoemsABirthDayWishPoembysuryasurya.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "enjoy": [
     "./data/txt_documents/flat/BeachPoemsADayAtTheBeachPoembyGeorgeHunter.txt",
@@ -9058,6 +9066,7 @@
   "experi": [
     "./data/txt_documents/flat/AmericaPoemsAmericaEuropeAndAsiaPoembyVaranasiRamabrahmam.txt",
     "./data/txt_documents/structured/file3.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "experienc": [
@@ -9081,7 +9090,8 @@
     "./data/txt_documents/flat/BeautifulPoemsABeautifulYoungNymphGoingToBedPoembyJonathanSwift.txt",
     "./data/txt_documents/structured/file2.txt",
     "./data/txt_documents/structured/file4.txt",
-    "./data/txt_documents/structured/file6.txt"
+    "./data/txt_documents/structured/file6.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "explos": [
     "./data/txt_documents/flat/BabyPoemsABabyInTheWombPoembycyclopsevenRam.txt"
@@ -10726,8 +10736,7 @@
   "folder": [
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file6.txt"
   ],
   "folk": [
     "./data/txt_documents/flat/BirthPoemsABirthNightSongPoembyKatharineTynan.txt"
@@ -10752,8 +10761,7 @@
     "./data/txt_documents/flat/BabyPoemsABabyBoyPoembyMelvinaGermain.txt",
     "./data/txt_documents/flat/FaithPoems0190ANovelFairyStoryForAPoeticMultiFaithGiftmasPoembyMichaelShepherd.txt",
     "./data/txt_documents/structured/file2.txt",
-    "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file1.txt"
   ],
   "fond": [
     "./data/txt_documents/flat/DreamPoemsADayDreamPoembyEmilyJaneBront\u00eb.txt",
@@ -11400,10 +11408,14 @@
   "function": [
     "./data/txt_documents/flat/BirthPoems02VivekanandaBirthOfNarendranathDattaPoembyRajaramRamachandran.txt",
     "./data/txt_documents/structured/file3.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "fund": [
     "./data/txt_documents/flat/AmericaPoemsAmericaEuropeAndAsiaPoembyVaranasiRamabrahmam.txt"
+  ],
+  "fundament": [
+    "./data/txt_documents/structured/file5.txt"
   ],
   "furi": [
     "./data/txt_documents/flat/BeautyPoemsAnHymnInHonourOfBeautyPoembyEdmundSpenser.txt",
@@ -11440,7 +11452,8 @@
     "./data/txt_documents/flat/BeautyPoemsAHymnOfHeavenlyBeautyPoembyEdmundSpenser.txt",
     "./data/txt_documents/flat/BeautifulPoemsAmericaTheBeautifulPoembyKatharineLeeBates.txt",
     "./data/txt_documents/flat/BeautifulPoems2007BeautifulLiePoembyDeanaRode.txt",
-    "./data/txt_documents/flat/BirthPoemsABirthOfPoetPoembyHasmukhAmathalal.txt"
+    "./data/txt_documents/flat/BirthPoemsABirthOfPoetPoembyHasmukhAmathalal.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "gait": [
     "./data/txt_documents/flat/FatherPoemsBecomingTheManMyFatherAlwaysWasForBrianDPoembyD\u00f3nallDempsey.txt"
@@ -11967,8 +11980,7 @@
     "./data/txt_documents/structured/file3.txt",
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file6.txt"
   ],
   "god": [
     "./data/txt_documents/flat/AngerPoems098150WaysToOvercomeAngerPoembyGanChennai.txt",
@@ -14509,6 +14521,7 @@
     "./data/txt_documents/flat/BeautifulPoemsAHintAtWhatIsBeautifulPoembyyoonoospeerbocus.txt",
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file6.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "inspir": [
@@ -14625,8 +14638,7 @@
     "./data/txt_documents/flat/BirthPoems01ThyagarajaBirthOfASaintPoembyRajaramRamachandran.txt",
     "./data/txt_documents/flat/BirthPoems01ThyagarajaBirthOfASaintPoembyRajaramRamachandran.txt",
     "./data/txt_documents/flat/BirthPoems01VivekanandaTheBirthOfHinduismPoembyRajaramRamachandran.txt",
-    "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file1.txt"
   ],
   "introspect": [
     "./data/txt_documents/flat/AngerPoems098150WaysToOvercomeAngerPoembyGanChennai.txt"
@@ -16698,6 +16710,12 @@
   "local": [
     "./data/txt_documents/flat/AmericaPoemsAmericaEuropeAndAsiaPoembyVaranasiRamabrahmam.txt"
   ],
+  "locat": [
+    "./data/txt_documents/structured/file5.txt",
+    "./data/txt_documents/structured/file5.txt",
+    "./data/txt_documents/structured/file5.txt",
+    "./data/txt_documents/structured/file5.txt"
+  ],
   "loch": [
     "./data/txt_documents/flat/BeautifulPoemsBeautifulAberfoylePoembyWilliamTopazMcGonagall.txt",
     "./data/txt_documents/flat/BeautifulPoemsBeautifulAberfoylePoembyWilliamTopazMcGonagall.txt",
@@ -17495,8 +17513,7 @@
     "./data/txt_documents/flat/CinderellaPoemsACinderellaDancePoembyEmmanuelaPetitFrere.txt",
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file6.txt"
   ],
   "maker": [
     "./data/txt_documents/flat/BeautyPoemsAnHymnOfHeavenlyBeautyPoembyEdmundSpenser.txt",
@@ -18481,7 +18498,8 @@
     "./data/txt_documents/flat/BirthPoemsABirthOfPoetPoembyHasmukhAmathalal.txt"
   ],
   "monkey": [
-    "./data/txt_documents/flat/AnimalPoems971AnimalRightsPoembyMelvinaGermain.txt"
+    "./data/txt_documents/flat/AnimalPoems971AnimalRightsPoembyMelvinaGermain.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "month": [
     "./data/txt_documents/flat/BirthPoems01ThyagarajaBirthOfASaintPoembyRajaramRamachandran.txt",
@@ -19705,7 +19723,8 @@
     "./data/txt_documents/flat/CarpediemPoemsByeToMorrowCarpeDiemPoembyBashiruCharlesBakin.txt",
     "./data/txt_documents/flat/FaithPoems0190ANovelFairyStoryForAPoeticMultiFaithGiftmasPoembyMichaelShepherd.txt",
     "./data/txt_documents/flat/ChicagoPoemsAFilipinoFedUpInChicagoPoembyRICBASTASA.txt",
-    "./data/txt_documents/flat/FaithPoems07newFaithPoembyMaxReif.txt"
+    "./data/txt_documents/flat/FaithPoems07newFaithPoembyMaxReif.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "offic": [
     "./data/txt_documents/flat/BelievePoemsBelieveHalfPoembyFrancisDuggan.txt",
@@ -20037,6 +20056,7 @@
   "optim": [
     "./data/txt_documents/structured/file3.txt",
     "./data/txt_documents/structured/file2.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
@@ -21135,8 +21155,7 @@
     "./data/txt_documents/flat/BeautyPoemsAnElegyToAnOldBeautyPoembyThomasParnell.txt",
     "./data/txt_documents/flat/FatherPoemsBeatingFatherDeathPoembyHerbertNehrlich.txt",
     "./data/txt_documents/flat/BabyPoemsABabyInTheHousePoembyEllaWheelerWilcox.txt",
-    "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file1.txt"
   ],
   "pleasant": [
     "./data/txt_documents/flat/CrazyPoemsACrazyAndInsanePoetPoembyErshadMazumder.txt",
@@ -21532,7 +21551,8 @@
     "./data/txt_documents/flat/FatherPoems715FatherYouAreMyAllPoembyMelvinaGermain.txt"
   ],
   "precis": [
-    "./data/txt_documents/structured/file2.txt"
+    "./data/txt_documents/structured/file2.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "predica": [
     "./data/txt_documents/flat/BabyPoemsABabyInTheWombPoembycyclopsevenRam.txt"
@@ -21873,8 +21893,7 @@
     "./data/txt_documents/structured/file2.txt",
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file6.txt"
   ],
   "pseudonym": [
     "./data/txt_documents/flat/FaithPoems0190ANovelFairyStoryForAPoeticMultiFaithGiftmasPoembyMichaelShepherd.txt"
@@ -22671,8 +22690,7 @@
   "reliabl": [
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file6.txt"
   ],
   "relief": [
     "./data/txt_documents/flat/BeautyPoemsAnHymnInHonourOfBeautyPoembyEdmundSpenser.txt",
@@ -23256,7 +23274,6 @@
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
     "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "rock": [
@@ -24035,10 +24052,6 @@
     "./data/txt_documents/structured/file6.txt",
     "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file5.txt",
-    "./data/txt_documents/structured/file5.txt",
-    "./data/txt_documents/structured/file5.txt",
-    "./data/txt_documents/structured/file5.txt",
-    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "seasid": [
@@ -24090,7 +24103,8 @@
   "section": [
     "./data/txt_documents/flat/AmericaPoems111ChinaSectionEightAsAmericaByCauchy3Poembycheungshunsang.txt",
     "./data/txt_documents/structured/file4.txt",
-    "./data/txt_documents/structured/file6.txt"
+    "./data/txt_documents/structured/file6.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "secur": [
     "./data/txt_documents/flat/BrotherPoemsAdviceToMyBestBrotherCollFrancisLovelacePoembyRichardLovelace.txt",
@@ -25131,6 +25145,7 @@
   ],
   "simplifi": [
     "./data/txt_documents/structured/file3.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "sin": [
@@ -26303,6 +26318,7 @@
   "stabil": [
     "./data/txt_documents/flat/ChangePoems2004TheChangePoembyDeanaRode.txt",
     "./data/txt_documents/structured/file3.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "stack": [
@@ -26804,8 +26820,7 @@
   "streamlin": [
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
-    "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt"
+    "./data/txt_documents/structured/file6.txt"
   ],
   "street": [
     "./data/txt_documents/flat/ChildhoodPoemsAChildhoodForgottenAChildhoodLostPoembyDaniBaxter.txt",
@@ -27169,6 +27184,7 @@
     "./data/txt_documents/flat/AmericaPoemsAmericaIn1804PoembyEdgarLeeMasters.txt",
     "./data/txt_documents/flat/BabyPoemsABabyInTheWombPoembycyclopsevenRam.txt",
     "./data/txt_documents/structured/file3.txt",
+    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "suppos": [
@@ -27435,6 +27451,9 @@
     "./data/txt_documents/structured/file6.txt",
     "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
+  ],
+  "systemat": [
+    "./data/txt_documents/structured/file5.txt"
   ],
   "t": [
     "./data/txt_documents/flat/BirthPoemsAnOdeOfTheBirthOfOurSaviourPoembyRobertHerrick.txt"
@@ -29368,6 +29387,10 @@
   "tributari": [
     "./data/txt_documents/flat/BeachPoemsABeautifulBeachOfDangerPoembyRameshTA.txt"
   ],
+  "trick": [
+    "./data/txt_documents/structured/file5.txt",
+    "./data/txt_documents/structured/file5.txt"
+  ],
   "trifl": [
     "./data/txt_documents/flat/BeautyPoemsAnElegyToAnOldBeautyPoembyThomasParnell.txt"
   ],
@@ -29775,7 +29798,8 @@
     "./data/txt_documents/flat/AmericaPoemsAmericaEuropeAndAsiaPoembyVaranasiRamabrahmam.txt"
   ],
   "underli": [
-    "./data/txt_documents/structured/file2.txt"
+    "./data/txt_documents/structured/file2.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "undermin": [
     "./data/txt_documents/flat/AngelPoemsADeformedAngelPoembyMuhammadShanazar.txt"
@@ -29794,7 +29818,8 @@
     "./data/txt_documents/flat/BabyPoems015ThisBabyIsWonderfulPoembyRishaAhmed12yrs.txt",
     "./data/txt_documents/flat/BrotherPoemsAnotherBrotherPoembyMAXINEPSOSO.txt",
     "./data/txt_documents/flat/BeachPoemsAJackRussellsTripToTheBeachPoembyMicron.txt",
-    "./data/txt_documents/flat/FaithPoemsBlindFaithPoembycecilhickman.txt"
+    "./data/txt_documents/flat/FaithPoemsBlindFaithPoembycecilhickman.txt",
+    "./data/txt_documents/structured/file5.txt"
   ],
   "understood": [
     "./data/txt_documents/flat/AmericaPoemsAmericaEuropeAndAsiaPoembyVaranasiRamabrahmam.txt",
@@ -30095,7 +30120,6 @@
     "./data/txt_documents/structured/file1.txt",
     "./data/txt_documents/structured/file6.txt",
     "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file5.txt"
   ],
   "use": [
@@ -30118,7 +30142,6 @@
     "./data/txt_documents/structured/file4.txt",
     "./data/txt_documents/structured/file1.txt",
     "./data/txt_documents/structured/file6.txt",
-    "./data/txt_documents/structured/file5.txt",
     "./data/txt_documents/structured/file7.txt"
   ],
   "useful": [
