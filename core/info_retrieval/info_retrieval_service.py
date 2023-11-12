@@ -101,7 +101,7 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                     similarity = self.vsm_service.compute_similarity_content_only(content_txt_one=query,
                                                                                   content_txt_two=file_content,
                                                                                   weight_strategy=weight_strategy,
-                                                                                  similarity_strategy=similarity_strategy)
+                                                                                  similarity_strategy=similarity_strategy)["similarity"]
                 except Exception as e:
                     continue
                 if similarity != 0:
