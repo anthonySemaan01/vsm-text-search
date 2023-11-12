@@ -8,6 +8,9 @@ class AbstractVSMSimilarityService(ABC):
     def compute_cosine_similarity(self, vector_one, vector_two): raise NotImplementedError
 
     @abstractmethod
+    def compute_extended_cosine_similarity(self, dimensions, vector_one, vector_two): raise NotImplementedError
+
+    @abstractmethod
     def compute_pcc_similarity(self, vector_one, vector_two): raise NotImplementedError
 
     @abstractmethod

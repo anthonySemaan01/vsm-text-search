@@ -1,12 +1,78 @@
 import math
 
+import numpy as np
+
 from domain.contracts.repositories.abstract_path_service import AbstractPathService
 from domain.contracts.services.abstract_vsm_similarity_service import AbstractVSMSimilarityService
 
 
 class VSMSimilarityService(AbstractVSMSimilarityService):
+
     def __init__(self, path_service: AbstractPathService):
         self.path_service = path_service
+
+    def compute_extended_cosine_similarity(self, dimensions, vector_one, vector_two):
+        def cost_update(a, b):
+            return 0 if a == b else 1
+
+        def cost_insert(a):
+            return 1
+
+        def cost_delete(b):
+            return 1
+
+        def sim_context(c1, c2):
+            if c1 == c2:
+                return 1
+            c1 = c1.split("/")
+            c2 = c2.split("/")
+            # WF
+            Dist = np.ndarray(shape=(len(c1) + 1, len(c2) + 1))
+            Dist[0][0] = 0
+
+            for i in range(1, len(c1) + 1):
+                Dist[i][0] = Dist[i - 1][0] + cost_delete(c1[i - 1])
+            for j in range(1, len(c2) + 1):
+                Dist[0][j] = Dist[0][j - 1] + cost_insert(c2[j - 1])
+
+            for i in range(1, len(c1) + 1):
+                for j in range(1, len(c2) + 1):
+                    Dist[i][j] = min(
+                        Dist[i - 1][j - 1] + cost_update(c1[i - 1], c2[j - 1]),
+                        Dist[i - 1][j] + cost_delete(c1[i - 1]),
+                        Dist[i][j - 1] + cost_insert(c2[j - 1])
+                    )
+            return 1 / (1 + Dist[i][j])
+
+        dict = {}
+
+        for i in range(0, len(dimensions)):
+            dimension = dimensions[i]
+            term = dimension.split(",")[0]
+            context = dimension.split(",")[1]
+
+            if term in dict:
+                dict[term][context] = i
+            else:
+                dict[term] = {context: i}
+
+        num = denom = denom1 = denom2 = 0
+
+        for i in range(len(vector_one)):
+            dimension = dimensions[i]
+            term = dimension.split(",")[0]
+            context = dimension.split(",")[1]
+            numc = 0
+            for key, val in dict[term].items():
+                b = sim_context(context, key)
+                numc += (vector_one[i] * vector_two[val] * b)
+            num += numc
+
+        for i in range(len(vector_one)):
+            denom1 += float(vector_one[i]) ** 2
+            denom2 += float(vector_two[i]) ** 2
+        denom = math.sqrt(denom1 * denom2)
+        return float(num / denom)
 
     def compute_cosine_similarity(self, vector_one, vector_two):
         num = denom = denom1 = denom2 = 0
@@ -62,9 +128,9 @@ class VSMSimilarityService(AbstractVSMSimilarityService):
         union = len(set_one.union(set_two))
         return intersection / union
 
-    def compute_dice_similarity(self, vector_one:list, vector_two:list):
-            set_one = set(vector_one)
-            set_two = set(vector_two)
-            num = 2 * len(set_one.intersection(set_two))
-            denom = len(set_one) + len(set_two)
-            return num / denom
+    def compute_dice_similarity(self, vector_one: list, vector_two: list):
+        set_one = set(vector_one)
+        set_two = set(vector_two)
+        num = 2 * len(set_one.intersection(set_two))
+        denom = len(set_one) + len(set_two)
+        return num / denom

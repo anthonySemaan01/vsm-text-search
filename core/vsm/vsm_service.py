@@ -154,6 +154,7 @@ class VSMService(AbstractVSMService):
 
         # 5. compute similarity
         if similarity_strategy == SimilarityStrategy.cosine.value:
+            # similarity = self.vsm_similarity_service.compute_extended_cosine_similarity(dimensions, vector1, vector2)
             similarity = self.vsm_similarity_service.compute_cosine_similarity(vector1, vector2)
         elif similarity_strategy == SimilarityStrategy.pcc.value:
             similarity = self.vsm_similarity_service.compute_pcc_similarity(vector1, vector2)
