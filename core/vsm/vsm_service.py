@@ -38,7 +38,6 @@ class VSMService(AbstractVSMService):
         dimensions = tf_weights_one.keys() | tf_weights_two.keys()
 
         if weight_strategy == WeightStrategy.tf.value:
-            print(True)
             for dimension in dimensions:
                 vector1.append(tf_weights_one.get(dimension) or 0)
                 vector2.append(tf_weights_two.get(dimension) or 0)
@@ -60,7 +59,6 @@ class VSMService(AbstractVSMService):
                     vector2.append(0.0)
 
         df = pd.DataFrame(list(zip(vector1, vector2)), index=list(dimensions), columns=['Vector1', 'Vector2'])
-        print(f"Original DataFrame :{df}")
         df.to_csv(os.path.join(self.path_service.paths.csvs, f"content_only{random.randint(100, 999)}.csv"), index=True)
 
         if similarity_strategy == SimilarityStrategy.cosine.value:
@@ -93,7 +91,6 @@ class VSMService(AbstractVSMService):
         # 1. transform text file into an xml document
         root_element_of_tree_one, xml_version_of_text_one = transform_text_to_xml(content_txt_one)
         root_element_of_tree_two, xml_version_of_text_two = transform_text_to_xml(content_txt_two)
-        print(xml_version_of_text_two)
 
         path_xml_file_one = os.path.join(self.path_service.paths.xml_version_of_txt,
                                          name_file_one.replace(".txt", ".xml"))
@@ -106,7 +103,6 @@ class VSMService(AbstractVSMService):
 
         # 2. preprocess the xml document
         xml_version_of_text_one_processed = preprocessing(et.parse(path_xml_file_one).getroot())
-        print(type(xml_version_of_text_one_processed))
         xml_version_of_text_two_processed = preprocessing(et.parse(path_xml_file_two).getroot())
 
         # 3. do term context for each
@@ -121,7 +117,6 @@ class VSMService(AbstractVSMService):
 
         # 4. compute weights
         if weight_strategy == WeightStrategy.tf.value:
-            print(True)
             for dimension in dimensions:
                 vector1.append(tf_weights_one.get(dimension) or 0)
                 vector2.append(tf_weights_two.get(dimension) or 0)
@@ -148,7 +143,6 @@ class VSMService(AbstractVSMService):
 
         df = pd.DataFrame(list(zip(vector1, vector2)), index=list(dimensions),
                           columns=['Vector1', 'Vector2'])
-        print(f"Original DataFrame :{df}")
         # Write the DataFrame to a CSV file
         df.to_csv(os.path.join(self.path_service.paths.csvs, f"{name_file_one}{name_file_two}.csv"), index=True)
 

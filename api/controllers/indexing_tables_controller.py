@@ -27,7 +27,6 @@ def add_txt_file(file: UploadFile,
 
 @router.get("/get_txt_file")
 @inject
-def get_txt_file(txt_file_name: str, info_retrieval_service: AbstractInfoRetrievalService = Depends(
+def get_txt_file(txt_file_path: str, info_retrieval_service: AbstractInfoRetrievalService = Depends(
     Provide[Services.info_retrieval_service])):
-    file_path = info_retrieval_service.get_txt_file(txt_file_name=txt_file_name)
-    return FileResponse(path=file_path)
+    return FileResponse(path=txt_file_path)

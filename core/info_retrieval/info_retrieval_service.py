@@ -1,4 +1,3 @@
-import time
 import json
 import os
 import shutil
@@ -66,14 +65,14 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                         content_txt_two=file_content,
                         name_file_two=os.path.basename(relevant_document_path),
                         weight_strategy=weight_strategy,
-                        similarity_strategy=similarity_strategy)
+                        similarity_strategy=similarity_strategy)["similarity"]
 
                 elif "flat" in relevant_document_path:
                     similarity_results[relevant_document_path] = self.vsm_service.compute_similarity_content_only(
                         content_txt_one=query,
                         content_txt_two=file_content,
                         weight_strategy=weight_strategy,
-                        similarity_strategy=similarity_strategy)
+                        similarity_strategy=similarity_strategy)["similarity"]
 
             documents_selected = knn_range_selector(nearest_neighbor=nearest_neighbor, range_parameter=range_selector,
                                                     similarity_results=similarity_results)
@@ -119,7 +118,7 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                                                                                            name_file_two=os.path.basename(
                                                                                                structured_file_path),
                                                                                            weight_strategy=weight_strategy,
-                                                                                           similarity_strategy=similarity_strategy)
+                                                                                           similarity_strategy=similarity_strategy)["similarity"]
                 except Exception as e:
                     continue
                 if similarity != 0:
@@ -164,7 +163,8 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                     content_txt_one=query,
                     content_txt_two=file_content,
                     weight_strategy=weight_strategy,
-                    similarity_strategy=similarity_strategy)
+                    similarity_strategy=similarity_strategy)[
+                        "similarity"]
 
             documents_selected = knn_range_selector(nearest_neighbor=nearest_neighbor, range_parameter=range_selector,
                                                     similarity_results=similarity_results)
@@ -189,7 +189,8 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                     similarity = self.vsm_service.compute_similarity_content_only(content_txt_one=query,
                                                                                   content_txt_two=file_content,
                                                                                   weight_strategy=weight_strategy,
-                                                                                  similarity_strategy=similarity_strategy)
+                                                                                  similarity_strategy=similarity_strategy)[
+                        "similarity"]
                 except Exception as e:
                     continue
                 if similarity != 0:
@@ -204,7 +205,9 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                     similarity = self.vsm_service.compute_similarity_content_only(content_txt_one=query,
                                                                                   content_txt_two=file_content,
                                                                                   weight_strategy=weight_strategy,
-                                                                                  similarity_strategy=similarity_strategy)
+                                                                                  similarity_strategy=similarity_strategy)[
+                        "similarity"]
+
                 except Exception as e:
                     continue
                 if similarity != 0:
@@ -245,6 +248,6 @@ class InfoRetrievalService(AbstractInfoRetrievalService):
                                                   txt_indexing_table_path=self.path_service.paths.txt_indexing_table)
 
     def get_txt_file(self, txt_file_name):
-        txt_file_path = os.path.join(self.path_service.paths.data_input_txt_docs, txt_file_name)
-        if os.path.isfile(txt_file_path):
-            return txt_file_path
+        # txt_file_path = os.path.join(self.path_service.paths.data_input_txt_docs, txt_file_name)
+        if os.path.isfile(txt_file_name):
+            return txt_file_name
