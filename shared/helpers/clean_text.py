@@ -15,15 +15,25 @@ def clean_text(text):
     wnl = WordNetLemmatizer()
     ps = PorterStemmer()
 
+    # Convert text to lowercase
     text = text.lower()
+
+    # Tokenize the text
     tokens = word_tokenize(text)
 
+    # Remove non-alphanumeric tokens
     words = [word for word in tokens if word.isalnum()]
 
+    # Get stopwords
     stop_words = set(stopwords.words('english'))
 
+    # Remove stopwords
     words = [w for w in words if w not in stop_words]
+
+    # Lemmatize words
     lemmatized = [wnl.lemmatize(word) for word in words]
+
+    # Stem words
     stemmed = [ps.stem(word) for word in lemmatized]
 
     return " ".join(stemmed)

@@ -16,7 +16,6 @@ def remove_digits(text):
     return re.sub(r'\d', '', text)
 
 
-# TODO implement transform_text_to_xml
 def transform_text_to_xml(semi_structured_text: str):
     def create_content_xml(content, content_tag):
         for line in content:
@@ -189,8 +188,3 @@ def find_term_context(tree):
 
     return term_context_list
 
-
-# Tag-based Approach
-def find_tag_based(tree):
-    # Returning all elements in the tree.
-    return [element_name(x)[1:] for x in tree.iter()]

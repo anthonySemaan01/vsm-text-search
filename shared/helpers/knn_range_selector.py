@@ -4,23 +4,9 @@ def knn_operator(nearest_neighbor: int, similarity_results: dict):
     return neighbors
 
 
-
-def range_operator(range_parameter: float, similarity_results: dict):
-    print(similarity_results)
-    print(range_parameter)
-    # if sim >= e add term to neighbors
-    sorted_similarity_results = sorted(similarity_results.items(), key=lambda item: item[1], reverse=True)
-
-    in_range = {}
-
-    for k, v in sorted_similarity_results:
-        if v >= range_parameter:
-            in_range[k] = v
-        else:
-            break
-
-    return in_range
-
-
-def knn_range_selector(nearest_neighbor: int, range_parameter: float, similarity_results: dict):
-    return knn_operator(nearest_neighbor, range_operator(range_parameter, similarity_results))
+def knn_range_selector(nearest_neighbor: int, similarity_results: dict, range_parameter: float = 0):
+    if range_parameter > 0:
+        filtered_results = {key: value for key, value in similarity_results.items() if value >= range_parameter}
+        return knn_operator(nearest_neighbor, filtered_results)
+    else:
+        return knn_operator(nearest_neighbor, similarity_results)
