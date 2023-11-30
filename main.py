@@ -4,7 +4,8 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
-from api.controllers import health_controller, comparison_controller, indexing_tables_controller, files_controller
+from api.controllers import health_controller, comparison_controller, indexing_tables_controller, files_controller, \
+    clustering_controller
 from containers import Services
 from domain.exceptions.application_error import ApplicationError
 
@@ -13,7 +14,7 @@ def create_app() -> FastAPI:
     app = FastAPI(version='1.0', title='VSM Text Base Similarity API: IDPA Project')
     services = Services()
 
-    services.wire(modules=[comparison_controller, indexing_tables_controller])
+    services.wire(modules=[comparison_controller, indexing_tables_controller, clustering_controller])
 
     app.add_middleware(
         CORSMiddleware,
@@ -45,6 +46,12 @@ def create_app() -> FastAPI:
         files_controller.router,
         prefix="/files",
         tags=["files"]
+    )
+
+    app.include_router(
+        clustering_controller.router,
+        prefix="/clustering",
+        tags=["clustering"]
     )
 
     app.services = services
