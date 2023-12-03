@@ -88,7 +88,6 @@ def transform_text_to_xml(semi_structured_text: str):
                 content_element = create_content_xml([line], content)
 
                 done = False
-                print(line)
                 if index + 1 < len(lines):
                     section_match_nl = section_re.match(lines[index + 1])
                     subsection_match_nl = subsection_re.match(lines[index + 1])

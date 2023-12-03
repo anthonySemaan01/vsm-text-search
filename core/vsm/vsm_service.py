@@ -31,8 +31,8 @@ class VSMService(AbstractVSMService):
         content_txt_two_cleaned = clean_text(content_txt_two)
 
         tf_weights_one, tf_weights_two = self.vsm_weight_service.compute_tf_weight(
-            content_txt_one=content_txt_one_cleaned,
-            content_txt_two=content_txt_two_cleaned)
+            content_text_one=content_txt_one_cleaned,
+            content_text_two=content_txt_two_cleaned)
 
         # dimensions are the words found in both text 1 and 2 after cleaning
         dimensions = tf_weights_one.keys() | tf_weights_two.keys()
@@ -66,7 +66,7 @@ class VSMService(AbstractVSMService):
         elif similarity_strategy == SimilarityStrategy.pcc.value:
             similarity = self.vsm_similarity_service.compute_pcc_similarity(vector1, vector2)
         elif similarity_strategy == SimilarityStrategy.euclidian.value:
-            similarity = self.vsm_similarity_service.compute_euclidian_similarity(vector1, vector2)
+            similarity = self.vsm_similarity_service.compute_euclidean_similarity(vector1, vector2)
         elif similarity_strategy == SimilarityStrategy.manhattan.value:
             similarity = self.vsm_similarity_service.compute_manhattan_similarity(vector1, vector2)
         elif similarity_strategy == SimilarityStrategy.jaccard.value:
@@ -110,8 +110,8 @@ class VSMService(AbstractVSMService):
         term_context_tree_two = find_term_context(xml_version_of_text_two_processed)
 
         tf_weights_one, tf_weights_two = self.vsm_weight_service.compute_tf_weight(
-            content_txt_one=" ".join(term_context_tree_one),
-            content_txt_two=" ".join(term_context_tree_two))
+            content_text_one=" ".join(term_context_tree_one),
+            content_text_two=" ".join(term_context_tree_two))
 
         dimensions = list(tf_weights_one.keys() | tf_weights_two.keys())
 
@@ -168,3 +168,4 @@ class VSMService(AbstractVSMService):
             "time": end - start,
             "dataframe":  df.to_json(orient='columns')
         }
+

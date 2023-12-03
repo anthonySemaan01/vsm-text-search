@@ -11,6 +11,6 @@ router = APIRouter()
 @router.post("/cluster_k_means")
 @inject
 def compare(kmeans_clustering_request: KMeansClusteringRequest,
-            clustering_service: AbstractClusteringService = Depends(Provide[Services.comparison_service])):
+            clustering_service: AbstractClusteringService = Depends(Provide[Services.clustering_service])):
     data = clustering_service.cluster_using_kmeans(kmeans_clustering_request)
     return data

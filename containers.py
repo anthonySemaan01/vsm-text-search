@@ -38,4 +38,6 @@ class Services(containers.DeclarativeContainer):
                                            info_retrieval_service=info_retrieval_service)
 
     clustering_service = providers.Factory(AbstractClusteringService.register(ClusteringService),
-                                           paths_service=paths_service)
+                                           path_service=paths_service, vsm_service=vsm_service,
+                                           vsm_weight_service=vsm_weight_service,
+                                           vsm_similarity_service=vsm_similarity_service)
