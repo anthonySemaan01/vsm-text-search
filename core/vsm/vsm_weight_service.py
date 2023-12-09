@@ -14,8 +14,7 @@ class VSMWeightService(AbstractVSMWeightService):
         self.path_service = path_service
 
     def compute_tf_weight(self, content_text_one: Optional[str] = None, content_text_two: Optional[str] = None) -> \
-            Tuple[
-                Dict[str, int], Dict[str, int]]:
+            Tuple[Dict[str, int], Dict[str, int]]:
         term_frequency_one: Dict[str, int] = {}
         term_frequency_two: Dict[str, int] = {}
 
