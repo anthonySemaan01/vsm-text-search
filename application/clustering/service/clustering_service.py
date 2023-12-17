@@ -21,9 +21,11 @@ from domain.contracts.services.abstract_vsm_weight_service import AbstractVSMWei
 from domain.models.enums.similarity_strategy import SimilarityStrategy
 from domain.models.enums.weight_strategy import WeightStrategy
 from domain.models.hierarchical_clustering_request import HierarchicalClusteringRequest
+from domain.models.dbscan_clustering_request import DBScanClusteringRequest
 from domain.models.kmeans_clustering_request import KMeansClusteringRequest
 from shared.helpers.kmean_helpers import select_random_elements
 from shared.helpers.text_to_xml_tree import transform_text_to_xml, preprocessing, find_term_context
+from sklearn.cluster import DBSCAN
 
 matplotlib.use('Agg')
 
@@ -311,8 +313,6 @@ class ClusteringService(AbstractClusteringService):
             metric = "cosine"
         elif hierarchical_clustering_request.similarity_strategy.value == SimilarityStrategy.manhattan.value:
             metric = "cityblock"
-        elif hierarchical_clustering_request.similarity_strategy.value == SimilarityStrategy.pcc.value:
-            metric = "correlation"
         elif hierarchical_clustering_request.similarity_strategy.value == SimilarityStrategy.euclidian.value:
             metric = "euclidean"
 
@@ -327,7 +327,6 @@ class ClusteringService(AbstractClusteringService):
                                                        affinity=metric,
                                                        linkage=hierarchical_clustering_request.cluster_distance_strategy.value)
         labels = hierarchical_cluster.fit_predict(data_array)
-        print(labels)
 
         dendrogram(linkage_result)
         plt.title('Dendrogram')
@@ -363,4 +362,121 @@ class ClusteringService(AbstractClusteringService):
             "image": img_base64,
             "clusters": returned_clusters,
             "files_mapping": files_mapping
+        }
+
+    def cluster_using_dbscan(self, dbscan_clustering_request: DBScanClusteringRequest):
+        files_paths = [os.path.join(self.path_service.paths.data_input_txt_docs_structured, file_name) for file_name in
+                       os.listdir(os.path.join(self.path_service.paths.data_input_txt_docs_structured,
+                                               dbscan_clustering_request.directory_name))]
+
+        dimensions = []
+        xml_trees_processed = []
+        weight_results = {}
+
+        for file_path in files_paths:
+            with open(file_path, 'r') as file:
+                content_txt = file.read()
+
+            # 1. transform text file into an xml document
+            root_element_of_tree_one, xml_version_of_text_one = transform_text_to_xml(content_txt)
+
+            path_xml_file = os.path.join(self.path_service.paths.xml_version_of_txt,
+                                         os.path.basename(file_path).replace(".txt", ".xml"))
+
+            with open(path_xml_file, 'w') as file:
+                file.write(str(xml_version_of_text_one))
+
+            # 2. preprocess the xml document
+            xml_version_of_text_one_processed = preprocessing(et.parse(path_xml_file).getroot())
+            xml_trees_processed.append(xml_version_of_text_one_processed)
+
+            # 3. do term context for each
+            term_context_tree = find_term_context(xml_version_of_text_one_processed)
+
+            tf_weights, _ = self.vsm_weight_service.compute_tf_weight(content_text_one=" ".join(term_context_tree))
+
+            dimensions = list(set(dimensions).union(set(tf_weights.keys())))
+
+        start = time.time()
+
+        for file_path in files_paths:
+            vector = []
+            with open(file_path, 'r') as file:
+                content_txt = file.read()
+
+            # 1. transform text file into an xml document
+            root_element_of_tree_one, xml_version_of_text_one = transform_text_to_xml(content_txt)
+
+            path_xml_file = os.path.join(self.path_service.paths.xml_version_of_txt,
+                                         os.path.basename(file_path).replace(".txt", ".xml"))
+
+            with open(path_xml_file, 'w') as file:
+                file.write(str(xml_version_of_text_one))
+
+            # 2. preprocess the xml document
+            xml_version_of_text_one_processed = preprocessing(et.parse(path_xml_file).getroot())
+
+            # 3. do term context for each
+            term_context_tree_one = find_term_context(xml_version_of_text_one_processed)
+
+            tf_weights, _ = self.vsm_weight_service.compute_tf_weight(
+                content_text_one=" ".join(term_context_tree_one))
+
+            # 4. compute weights
+            if dbscan_clustering_request.weight_strategy.value == WeightStrategy.tf.value:
+                for dimension in dimensions:
+                    vector.append(tf_weights.get(dimension) or 0)
+
+            elif dbscan_clustering_request.weight_strategy.value == WeightStrategy.tf_idf.value:
+                for dimension in dimensions:
+                    if dimension in tf_weights:
+                        vector.append(self.vsm_weight_service.compute_tf_idf_weight_xml(
+                            term=dimension,
+                            xml_version_of_document_processed=xml_version_of_text_one_processed,
+                            other_xml_trees_list=xml_trees_processed))
+                    else:
+                        vector.append(0.0)
+
+            weight_results[file_path] = vector
+
+        data_tuples = []
+        file_paths = []
+
+        # Transform the dictionary data into the required format
+        for path, weights in weight_results.items():
+            data_tuples.append(tuple(weights))
+            file_paths.append(path)
+
+        # Convert data_tuples to a numpy array for linkage
+        data_array = np.array(data_tuples)
+
+        metric = None
+
+        if dbscan_clustering_request.similarity_strategy.value == SimilarityStrategy.cosine.value:
+            metric = "cosine"
+        elif dbscan_clustering_request.similarity_strategy.value == SimilarityStrategy.manhattan.value:
+            metric = "cityblock"
+        elif dbscan_clustering_request.similarity_strategy.value == SimilarityStrategy.euclidian.value:
+            metric = "euclidean"
+
+        clustering = DBSCAN(eps=dbscan_clustering_request.eps, min_samples=dbscan_clustering_request.min_samples,
+                            metric=metric).fit(
+            data_array)
+
+        labels = clustering.labels_
+        files_mapping = {}
+        for index, file_path in enumerate(file_paths):
+            files_mapping[index] = file_path
+
+        returned_clusters: Dict[str, List] = {}
+        for index, cluster_of_file in enumerate(labels):
+            if str(cluster_of_file) in returned_clusters.keys():
+                files_in_cluster = returned_clusters[str(cluster_of_file)]
+                files_in_cluster.append(files_mapping[index])
+                returned_clusters[str(cluster_of_file)] = files_in_cluster
+            else:
+                returned_clusters[str(cluster_of_file)] = [files_mapping[index]]
+
+        return {
+            "clusters": returned_clusters,
         }

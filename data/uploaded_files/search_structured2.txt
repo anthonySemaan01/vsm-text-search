@@ -1,0 +1,17 @@
+Task Management Application
+
+1. Introduction
+Welcome to our task management application. This document offers an insight into the application's features and
+how to navigate its functionalities.
+
+2. Objectives
+The primary aim of this application is to enhance efficiency in managing tasks, providing a seamless and
+organized approach to task completion.
+
+2.1. Usage Guidelines
+Please adhere to the following guidelines to optimize your experience with the task management application.
+Assign relevant tags for effective categorization.
+Utilize priority settings to streamline task prioritization.
+
+2.2. System Framework
+The task management application is designed on a robust framework, guaranteeing reliability and optimal performance for users.

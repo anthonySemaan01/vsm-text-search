@@ -5,6 +5,7 @@ from containers import Services
 from domain.contracts.services.abstract_clustering_service import AbstractClusteringService
 from domain.models.kmeans_clustering_request import KMeansClusteringRequest
 from domain.models.hierarchical_clustering_request import HierarchicalClusteringRequest
+from domain.models.dbscan_clustering_request import DBScanClusteringRequest
 
 router = APIRouter()
 
@@ -24,3 +25,11 @@ def hierarchical(hierarchical_clustering_request: HierarchicalClusteringRequest,
     data = clustering_service.cluster_using_hierarchical(hierarchical_clustering_request)
     return data
     # return Response(content=data, media_type='image/png')
+
+
+@router.post("/cluster_dbscan")
+@inject
+def dbscan(dbscan_clustering_request: DBScanClusteringRequest,
+           clustering_service: AbstractClusteringService = Depends(Provide[Services.clustering_service])):
+    data = clustering_service.cluster_using_dbscan(dbscan_clustering_request)
+    return data

@@ -1,0 +1,13 @@
+Text Document Search App
+1. Getting Started
+Discover the basics of our document search app. This section provides an overview of the app's features and usage.
+
+2. Objectives and Goals
+The primary aim of this app is to streamline the process of searching and managing text documents efficiently.
+
+2.1. Usage Tips
+Explore these tips to make the most out of the document search app:
+Use relevant keywords for accurate search results. Organize your documents into folders for better categorization.
+
+2.2. System Framework Insights
+The document search app is built on a robust framework, ensuring reliability and performance.
